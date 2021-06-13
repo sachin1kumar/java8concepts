@@ -110,4 +110,22 @@ interface SampleInterfaceI {
      }
 }
 
+7) --------
+We have static method from Java8 in interface as well.
+interface SampleInterfaceI {
+
+     void method();
+     default void show() {
+         System.out.println("I");
+     }
+
+     static void shown() {
+         System.out.println("Static support");
+     }
+}
+In main, can be called like:
+public static void main(String[] args) {
+       SampleInterfaceI.shown();
+}
+
 
