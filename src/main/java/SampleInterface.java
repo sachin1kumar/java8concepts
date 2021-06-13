@@ -1,2 +1,3 @@
-package PACKAGE_NAME;public interface SampleInterface {
+public interface SampleInterface {
+    default void method(){}
 }
