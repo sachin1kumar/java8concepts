@@ -128,4 +128,36 @@ public static void main(String[] args) {
        SampleInterfaceI.shown();
 }
 
+----------------------------------------------------------------------------------------------------------
+Why lamba expression was introduced in Java8?
 
+interface A {
+    void show();
+}
+
+public class Demo {
+    public static void main(String...s) {
+        A obj = new A() {
+            public void show() {
+                System.out.println("Hello");
+            }
+        };
+        obj.show();
+    }
+}
+After compilation, compiler creates anonymous inner class like:
+Demo$1.class
+
+If we want to avoid the creation of $1 inner class, then we can use lamba exp. like:
+ public class Demo {
+     public static void main(String...s) {
+         A obj = () -> System.out.println("Hello");
+         //if show has some param then it can be like:
+         // A obj = (int i) -> System.out.println("Hello"+i);
+         //or A obj = (i) -> System.out.println("Hello"+i);
+         //or A obj = i -> System.out.println("Hello"+i);
+         obj.show();
+     }
+ }
+Now, after compilation, compiler will not create inner class:
+Demo.class
