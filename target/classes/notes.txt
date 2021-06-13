@@ -1,0 +1,113 @@
+Important features in Java8:
+1. We can now define methods in interface.
+2. Functional Programming: focus is now on functions instead of objects and we have a lambda functions support as well.
+3. Stream Programming: It helps us to achieve functional programming and concurrency when we are programming some
+operation on mutable data type.
+
+Functional Interface, imp. scenarios:
+But first of all, we have to understand why default or method definition was introduced in Java8, the reason because:
+Suppose we're upgrading to java8 and like in List interface they added new methods like replaceAll() and sort() so
+wherever we have List interface implemented in our code, everywhere we will get the error and will ask us to override
+these two newly added methods. Hence, java came up with this concept and set these methods optional to be implemented so
+that it will not give us the error on compile time.
+
+1) ---------
+interface SampleInterfaceI {
+     void method() ;
+}
+
+public interface SampleInterfaceJ {
+     void method();
+}
+
+Then, in Main, we have to override method() else we will have compile time error:
+public class Main implements SampleInterfaceJ, SampleInterfaceI {
+            @Override
+            public void method() {
+
+            }
+}
+
+2) ---------
+interface SampleInterfaceI {
+     default void method() {
+         System.out.println("I");
+     }
+}
+
+public interface SampleInterfaceJ {
+     void method();
+}
+
+Then, in Main, we have to override method() else we will have compile time error:
+public class Main implements SampleInterfaceJ, SampleInterfaceI {
+            @Override
+            public void method() {
+
+            }
+}
+
+3) ---------
+interface SampleInterfaceI {
+     default void method() {
+         System.out.println("I");
+     }
+}
+
+public interface SampleInterfaceJ {
+     default void method() {
+         System.out.println("J");
+     }
+}
+
+Then, in Main, we have to override method() else we will have compile time error:
+public class Main implements SampleInterfaceJ, SampleInterfaceI {
+            @Override
+            public void method() {
+
+            }
+}
+
+4) ---------
+interface SampleInterfaceI {
+     default void method() {
+         System.out.println("I");
+     }
+}
+
+Then, in Main, there is no need to override method():
+public class Main implements SampleInterfaceI {
+
+}
+
+5) ---------
+interface SampleInterfaceI {
+     void show();
+     default void method() {
+         System.out.println("I");
+     }
+}
+
+Then, in Main, there is no need to override method() but yes we have to override show():
+public class Main implements SampleInterfaceI {
+        @Override
+        public void show() {
+
+        }
+}
+
+6) -----------
+interface SampleInterfaceI {
+
+     void method();
+     default void show() {
+         System.out.println("I");
+     }
+    //////
+     default boolean equals(Object o) { --> This will give a compilation error default method equals override a method
+                                            of Object class.
+         return false;
+     }
+}
+
+
