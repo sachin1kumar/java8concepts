@@ -183,7 +183,10 @@ for(int i = 0; i < 100; i++) {
 }
 
 we can first convert above list to stream and then can process:
-list.stream().forEach(System.out::println);
+list.stream().forEach(System.out::println); --> Imp: this :: we call method reference and it means println() belongs to
+System.out and this is the support for call by method in java and here foreach is the high order func. which accepts func.
+as the argument.
+
 //If we call the stream method again on the list, then we will get the exception:
 list.stream().forEach(System.out::println);
 
