@@ -174,3 +174,23 @@ forEach has the parameter of type Consumer<T> interface which has accept(T) meth
 values. Hence, as we are using Java8 so instead of creating a separate class or anonymous class we are directly using
 lambda expression.
 ------------------------------------------------------------------------------------
+Stream API:
+It has added in Java8 when we have a huge amount of data to be processed.
+
+List<Integer> list = new ArrayList<>();
+for(int i = 0; i < 100; i++) {
+    list.add(i);
+}
+
+we can first convert above list to stream and then can process:
+list.stream().forEach(System.out::println);
+//If we call the stream method again on the list, then we will get the exception:
+list.stream().forEach(System.out::println);
+
+we can also make use of parallel stream if we want to make use of multithreading and it will create multiple threads
+based on the no. of cores available in processor.
+list.parallelStream().forEach(System.out::println);
+
+It has also various other methods available like filter, map, findfirst, etc.
+--------------------------------------------------------------------------------------
+
