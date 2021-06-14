@@ -193,4 +193,6 @@ list.parallelStream().forEach(System.out::println);
 
 It has also various other methods available like filter, map, findfirst, etc.
 --------------------------------------------------------------------------------------
+In java8 instead of java.util.Date and java.sql.Date, now we have a new package named java.time.*;
+----------------------------------------------------------------------------------------
 
