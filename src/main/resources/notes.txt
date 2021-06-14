@@ -161,3 +161,16 @@ If we want to avoid the creation of $1 inner class, then we can use lamba exp. l
  }
 Now, after compilation, compiler will not create inner class:
 Demo.class
+
+-----------------------------------------------------------------------------------
+List<Integer> list = Arrays.asList(1, 2, 3, 4);
+
+//Before java8 we had external for loops like: normal and enhanced for-loop.
+
+//In java8
+list.forEach(index -> System.out.println(index));
+
+forEach has the parameter of type Consumer<T> interface which has accept(T) method and this method prints the iterated
+values. Hence, as we are using Java8 so instead of creating a separate class or anonymous class we are directly using
+lambda expression.
+------------------------------------------------------------------------------------
