@@ -198,4 +198,8 @@ It has also various other methods available like filter, map, findfirst, etc.
 --------------------------------------------------------------------------------------
 In java8 instead of java.util.Date and java.sql.Date, now we have a new package named java.time.*;
 ----------------------------------------------------------------------------------------
+Diff b/w stream() and parallelStream():
+In stream() the order is maintained but in parallel it doesn't.
+----------------------------------------------------------------------------------------
+
 

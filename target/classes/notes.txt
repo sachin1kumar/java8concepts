@@ -128,4 +128,74 @@ public static void main(String[] args) {
        SampleInterfaceI.shown();
 }
 
+----------------------------------------------------------------------------------------------------------
+Why lamba expression was introduced in Java8?
+
+interface A {
+    void show();
+}
+
+public class Demo {
+    public static void main(String...s) {
+        A obj = new A() {
+            public void show() {
+                System.out.println("Hello");
+            }
+        };
+        obj.show();
+    }
+}
+After compilation, compiler creates anonymous inner class like:
+Demo$1.class
+
+If we want to avoid the creation of $1 inner class, then we can use lamba exp. like:
+ public class Demo {
+     public static void main(String...s) {
+         A obj = () -> System.out.println("Hello");
+         //if show has some param then it can be like:
+         // A obj = (int i) -> System.out.println("Hello"+i);
+         //or A obj = (i) -> System.out.println("Hello"+i);
+         //or A obj = i -> System.out.println("Hello"+i);
+         obj.show();
+     }
+ }
+Now, after compilation, compiler will not create inner class:
+Demo.class
+
+-----------------------------------------------------------------------------------
+List<Integer> list = Arrays.asList(1, 2, 3, 4);
+
+//Before java8 we had external for loops like: normal and enhanced for-loop.
+
+//In java8
+list.forEach(index -> System.out.println(index));
+
+forEach has the parameter of type Consumer<T> interface which has accept(T) method and this method prints the iterated
+values. Hence, as we are using Java8 so instead of creating a separate class or anonymous class we are directly using
+lambda expression.
+------------------------------------------------------------------------------------
+Stream API:
+It has added in Java8 when we have a huge amount of data to be processed.
+
+List<Integer> list = new ArrayList<>();
+for(int i = 0; i < 100; i++) {
+    list.add(i);
+}
+
+we can first convert above list to stream and then can process:
+list.stream().forEach(System.out::println); --> Imp: this :: we call method reference and it means println() belongs to
+System.out and this is the support for call by method in java and here foreach is the high order func. which accepts func.
+as the argument.
+
+//If we call the stream method again on the list, then we will get the exception:
+list.stream().forEach(System.out::println);
+
+we can also make use of parallel stream if we want to make use of multithreading and it will create multiple threads
+based on the no. of cores available in processor.
+list.parallelStream().forEach(System.out::println);
+
+It has also various other methods available like filter, map, findfirst, etc.
+--------------------------------------------------------------------------------------
+In java8 instead of java.util.Date and java.sql.Date, now we have a new package named java.time.*;
+----------------------------------------------------------------------------------------
 
