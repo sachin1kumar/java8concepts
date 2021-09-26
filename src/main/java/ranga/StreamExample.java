@@ -2,6 +2,7 @@ package ranga;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class StreamExample {
 
@@ -38,6 +39,8 @@ public class StreamExample {
         squareAndSum(integerList);
         cubeAndSum(integerList);
         sumOfOddNums(integerList);
+        createListWithEvenNums(integerList);
+        createListWithLenTitles(courses);
     }
 
 
@@ -87,7 +90,7 @@ public class StreamExample {
          System.out.println(integerList.stream()
                  //.reduce(0, StreamExample::findSum)
                  //.reduce(0, (x, y) -> x + y)
-                 .reduce(0, Integer::sum)); //This is static method in Integer class..
+                 .reduce(0, Integer::sum)); //This is static method in Integer class for calculating sum..
     }
 
     private static int findSum(int first, int second) {
@@ -120,4 +123,26 @@ public class StreamExample {
                 .reduce(0, Integer::sum);
         System.out.println(sum);
     }
+
+    //Create a List with Even Numbers Filtered from the Numbers List
+    private static void createListWithEvenNums(List<Integer> integerList) {
+        System.out.println("-----------Exercise 10------------");
+        final List<Integer> list = integerList.stream()
+                .filter(number -> number % 2 == 0)
+                .collect(Collectors.toList()); //for creating a list.
+        //print them..
+        list.stream().forEach(System.out::println);
+    }
+
+    //Create a List with lengths of all course titles.
+    private static void createListWithLenTitles(List<String> courses) {
+        System.out.println("-----------Exercise 11------------");
+        final List<Integer> list = courses.stream()
+                .map(len -> len.length())
+                .collect(Collectors.toList());
+        //print them..
+        list.stream().forEach(System.out::println);
+    }
+
+
 }
