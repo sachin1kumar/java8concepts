@@ -1,12 +1,13 @@
 package ranga;
 
 import java.util.List;
+import java.util.Optional;
 
 public class StreamExample {
 
     public static void main(String[] args) {
         //Numbers
-        List<Integer> integerList = List.of(23, 21, 12, 4, 9, 1, 2);
+        List<Integer> integerList = List.of(12, 9, 13, 4, 6, 2, 4, 12, 15);
         //Courses
         List<String> courses = List.of("Spring", "Spring Boot", "API" , "Microservices", "AWS", "PCF","Azure",
                 "Docker", "Kubernetes");
@@ -32,6 +33,11 @@ public class StreamExample {
         printCubesOfOddNums(integerList);
         System.out.println("-----------Length of Char in each course------------");
         printNumberOfCharsInEachCourse(courses);
+        System.out.println("-----------Calculate sum using reduce------------");
+        calculateSum(integerList);
+        squareAndSum(integerList);
+        cubeAndSum(integerList);
+        sumOfOddNums(integerList);
     }
 
 
@@ -73,5 +79,45 @@ public class StreamExample {
         courses.stream()
                 .map(String::length)
                 .forEach(System.out::println);
+    }
+
+    //calculate the sum using reduce method in which we specify the initial sum i.e. 0 and reduce all the elements
+    //to a given sum
+    private static void calculateSum(List<Integer> integerList) {
+         System.out.println(integerList.stream()
+                 //.reduce(0, StreamExample::findSum)
+                 //.reduce(0, (x, y) -> x + y)
+                 .reduce(0, Integer::sum)); //This is static method in Integer class..
+    }
+
+    private static int findSum(int first, int second) {
+        return first + second;
+    }
+
+    //Square every number in a list and find the sum of squares
+    private static void squareAndSum(List<Integer> integerList) {
+        System.out.println("-----------Exercise 7------------");
+        final Integer sum = integerList.stream()
+                .map(number -> number * number)
+                .reduce(0, Integer::sum);
+        System.out.println(sum);
+    }
+
+    //Cube every number in a list and find the sum of cubes
+    private static void cubeAndSum(List<Integer> integerList) {
+        System.out.println("-----------Exercise 8------------");
+        final Integer sum = integerList.stream()
+                .map(number -> number * number * number)
+                .reduce(0, Integer::sum);
+        System.out.println(sum);
+    }
+
+    //Find Sum of Odd Numbers in a list
+    private static void sumOfOddNums(List<Integer> integerList) {
+        System.out.println("-----------Exercise 9------------");
+        final Integer sum = integerList.stream()
+                .filter(number -> number % 2 != 0)
+                .reduce(0, Integer::sum);
+        System.out.println(sum);
     }
 }
